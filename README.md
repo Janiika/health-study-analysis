@@ -7,6 +7,7 @@ Ett individuellt analysprojekt på en hälsostudie, del 1.
 - Simulering kopplad till caset
 - Konfidensintervall
 - Hypotesprövning
+- Stickprovsstorlek och power
 
 ## Dataset
 Datasetet innehåller deltagarnas information om:
