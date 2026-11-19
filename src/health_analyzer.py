@@ -1,4 +1,5 @@
 from  visualization import plot_scatter_with_trendline
+from statistics_utils import calculate_bmi
 
 class HealthAnalyzer:
     """
@@ -8,24 +9,18 @@ class HealthAnalyzer:
     def __init__(self, df):
         self.df = df
 
-    def calculate_bmi(self):
-        """
-        Beräknar BMI för varje individ i datasetet.
-        """
-        return self.df["weight"] / (self.df["height"] / 100) ** 2
-
     def bmi_bp_correlation(self):
         """
         Beräknar Pearsons korrelation mellan BMI och systoliskt blodtryck.
         """
-        bmi = self.calculate_bmi()
+        bmi = calculate_bmi(self.df)
         return bmi.corr(self.df["systolic_bp"])
 
     def plot_bmi_vs_bp(self, ax):
         """
         Skapar ett scatter diagram med trendlinje för BMI och systoliskt blodtryck.
         """
-        bmi = self.calculate_bmi()
+        bmi = calculate_bmi(self.df)
         plot_scatter_with_trendline(
             ax,
             x=bmi,
