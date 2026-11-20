@@ -11,12 +11,14 @@ class HealthAnalyzer:
     def __init__(self, df):
         self.df = df
 
+
     def bmi_bp_correlation(self):
         """
         Beräknar Pearsons korrelation mellan BMI och systoliskt blodtryck.
         """
         bmi = calculate_bmi(self.df)
         return bmi.corr(self.df["systolic_bp"])
+
 
     def plot_bmi_vs_bp(self, ax):
         """
@@ -32,20 +34,36 @@ class HealthAnalyzer:
             ylabel="Systoliskt blodtryck (mmHg)"
         )
 
-    def age_bp_regression(self):
-        X = self.df[["age"]]
+
+    def bp_regression(self, predictor):
+        X = self.df[[predictor]]
         y = self.df["systolic_bp"]
 
         model = LinearRegression()
         model.fit(X, y)
         return model
 
-    def predict_bp(self, ages):
-        model = self.age_bp_regression()
 
-        X_new = pd.DataFrame({"age": ages})
+    def predict_bp(self, predictor, values):
+        model = self.bp_regression(predictor)
+
+        X_new = pd.DataFrame({predictor: values})
 
         return pd.DataFrame({
-            "Ålder": ages,
+            predictor: values,
             "Predikterat blodtryck": model.predict(X_new)
         })
+
+
+    def regression_summary(self, predictor):
+        model = self.bp_regression(predictor)
+
+        return {
+            "predictor": predictor,
+            "intercept": model.intercept_,
+            "slope": model.coef_[0],
+            "r2": model.score(
+                self.df[[predictor]],
+                self.df["systolic_bp"]
+            )
+        }
