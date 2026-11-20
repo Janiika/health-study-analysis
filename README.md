@@ -1,13 +1,21 @@
 # HÄLSOSTUDIE ANALYS
 
-Ett individuellt analysprojekt på en hälsostudie, del 1.
+Ett individuellt analysprojekt på en hälsostudie, del 2.
 
-## Projektets innehåll
+## Projektets innehåll (del 1)
 - Beskrivande analys
 - Simulering kopplad till caset
 - Konfidensintervall
 - Hypotesprövning
 - Stickprovsstorlek och power
+
+## Projektets innehåll (del 2)
+Del 2 bygger på del 1 med följande förändringar:
+- En del av kod har flyttats från notebook till funktioner och moduler
+- En klass `HealthAnalyzer` har skapats
+- Korrelation mellan BMI och blodtryck
+- Använt linjär regression för att prediktera blodtryck från ålder, vikt och kolesterol
+- Multipel regression
 
 ## Dataset
 Datasetet innehåller deltagarnas information om:
