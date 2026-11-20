@@ -22,7 +22,7 @@ class HealthAnalyzer:
 
     def plot_bmi_vs_bp(self, ax):
         """
-        Skapar ett scatter diagram med trendlinje för BMI och systoliskt blodtryck.
+        Skapar ett scatterdiagram med trendlinje för BMI och systoliskt blodtryck.
         """
         bmi = calculate_bmi(self.df)
         plot_scatter_with_trendline(
@@ -36,6 +36,10 @@ class HealthAnalyzer:
 
 
     def bp_regression(self, predictor):
+        """
+        Skapar en enkel linjär regressionsmodell för att förutsäga systoliskt blodtryck utifrån en vald prediktor.
+        Parametrar: predictor (str): Namnet på kolumnen som används som prediktor.
+        """
         X = self.df[[predictor]]
         y = self.df["systolic_bp"]
 
@@ -45,6 +49,9 @@ class HealthAnalyzer:
 
 
     def predict_bp(self, predictor, values):
+        """
+        Använder en regressionsmodell för att predikera systoliskt blodtryck för givna värden på en predikator.
+        """
         model = self.bp_regression(predictor)
 
         X_new = pd.DataFrame({predictor: values})
@@ -56,6 +63,9 @@ class HealthAnalyzer:
 
 
     def regression_summary(self, predictor):
+        """
+        Returnernar intercept, koefficient och R² för en regressionsmodell.
+        """
         model = self.bp_regression(predictor)
 
         return {
