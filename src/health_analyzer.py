@@ -1,5 +1,7 @@
 from  visualization import plot_scatter_with_trendline
 from statistics_utils import calculate_bmi
+from sklearn.linear_model import LinearRegression
+import pandas as pd
 
 class HealthAnalyzer:
     """
@@ -29,3 +31,21 @@ class HealthAnalyzer:
             xlabel="BMI",
             ylabel="Systoliskt blodtryck (mmHg)"
         )
+
+    def age_bp_regression(self):
+        X = self.df[["age"]]
+        y = self.df["systolic_bp"]
+
+        model = LinearRegression()
+        model.fit(X, y)
+        return model
+
+    def predict_bp(self, ages):
+        model = self.age_bp_regression()
+
+        X_new = pd.DataFrame({"age": ages})
+
+        return pd.DataFrame({
+            "Ålder": ages,
+            "Predikterat blodtryck": model.predict(X_new)
+        })
