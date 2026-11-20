@@ -2,6 +2,8 @@ from  visualization import plot_scatter_with_trendline
 from statistics_utils import calculate_bmi
 from sklearn.linear_model import LinearRegression
 import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
 
 class HealthAnalyzer:
     """
@@ -77,3 +79,65 @@ class HealthAnalyzer:
                 self.df["systolic_bp"]
             )
         }
+
+
+    def print_regression_summary(self, predictor):
+        """
+        Skriver ut en sammanfattning av en linjär regressionsmodell på ett snyggare sätt.
+        """
+        summary = self.regression_summary(predictor)
+
+        print(f"""
+        ---- Regression på vald prediktor ----
+        Prediktor       : {summary["predictor"]}
+        Intercept       : {summary["intercept"]:.2f}
+        Slope           : {summary["slope"]:.3f}
+        R²              : {summary["r2"]:.3f}
+        """)
+
+
+    def plot_regression_analysis(self, predictor):
+        """
+        Skapar en figur med två scatterdiagram: en för sambandet mellan den valda predikatoren och en med predikderade värden.
+        """
+        labels = {
+            "age": "Ålder",
+            "weight": "Vikt",
+            "cholesterol": "Kolesterol"
+        }
+
+        predictor_label = labels.get(predictor, predictor)
+
+        values = np.linspace(
+            int(self.df[predictor].min()),
+            int(self.df[predictor].max()),
+            10
+        )
+
+        preds_df = self.predict_bp(predictor, values)
+
+        fig, axes = plt.subplots(1, 2, figsize=(12, 4))
+
+        plot_scatter_with_trendline(
+            axes[0],
+            x=self.df[predictor],
+            y=self.df["systolic_bp"],
+            title=f"{predictor_label} vs. systoliskt blodtryck",
+            xlabel=predictor_label,
+            ylabel="Systoliskt blodtryck (mmHg)"
+        )
+
+        axes[1].plot(
+            preds_df[predictor],
+            preds_df["Predikterat blodtryck"],
+            marker="o"
+        )
+        axes[1].set(
+            title="Predikterat blodtryck (linjär regression)",
+            xlabel=predictor_label,
+            ylabel="Systoliskt blodtryck (mmHg)"
+        )
+        axes[1].grid(True, alpha=0.5)
+
+        plt.tight_layout()
+        plt.show()
