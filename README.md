@@ -2,7 +2,7 @@
 
 Ett individuellt analysprojekt på en hälsostudie, del 2.
 
-## Projektets innehåll (del 1)
+## Projektets innehåll (från del 1 - inkluderat även i del 2)
 - Beskrivande analys
 - Simulering kopplad till caset
 - Konfidensintervall
@@ -30,8 +30,8 @@ Datasetet innehåller deltagarnas information om:
 
 ## Miljö
 - Python version 3.14
-- Bibliotek `pandas`, `numpy`, `matplotlib` (see `requirements.txt`)
+- Bibliotek `pandas`, `numpy`, `matplotlib`, `scipy`, `sklearn`, `statsmodels` (see `requirements.txt`)
 
 ## Kör projektet
 - pip install -r requirements.txt
-- jupyter notebook: `report_del1.ipynb`
+- jupyter notebook: `report_del2.ipynb`
