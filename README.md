@@ -11,10 +11,10 @@ Ett individuellt analysprojekt på en hälsostudie, del 2.
 
 ## Projektets innehåll (del 2)
 Del 2 bygger på del 1 med följande förändringar:
-- En del av kod har flyttats från notebook till funktioner och moduler
+- En del av koden har flyttats från notebooken till funktioner och moduler
 - En klass `HealthAnalyzer` har skapats
 - Korrelation mellan BMI och blodtryck
-- Använt linjär regression för att prediktera blodtryck från ålder, vikt och kolesterol
+- Enkel linjär regression för prediktion av blodtryck från ålder, vikt och kolesterol
 - Multipel regression
 
 ## Dataset
@@ -34,4 +34,4 @@ Datasetet innehåller deltagarnas information om:
 
 ## Kör projektet
 - pip install -r requirements.txt
-- jupyter notebook: `report_del2.ipynb`
+- jupyter notebook: `notebooks/report_del2.ipynb`
