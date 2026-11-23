@@ -11,7 +11,7 @@ class HealthAnalyzer:
     """
 
     def __init__(self, df):
-        self.df = df
+        self.df = df.copy()
 
 
     def bmi_bp_correlation(self):
@@ -39,7 +39,7 @@ class HealthAnalyzer:
 
     def bp_regression(self, predictor):
         """
-        Skapar en enkel linjär regressionsmodell för att förutsäga systoliskt blodtryck utifrån en vald prediktor.
+        Returnerar en tränad linjär regressionsmodell som predikterar systolistk blodtryck utifrån en vald prediktor.
         Parametrar: predictor (str): Namnet på kolumnen som används som prediktor.
         """
         X = self.df[[predictor]]
