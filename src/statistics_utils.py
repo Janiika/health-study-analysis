@@ -33,3 +33,17 @@ def mean_and_ci(series, confidence=0.95):
     )
 
     return mean, ci[0], ci[1]
+
+def calculate_med_min_max(df):
+    """
+    Räknar och returnerar medel, median, min och max för datasetets numeriska värden.
+    """
+    summary = df[[
+        "age",
+        "height",
+        "weight",
+        "systolic_bp",
+        "cholesterol"
+    ]].agg(["mean", "median", "min", "max"]).round(2)
+
+    return summary
