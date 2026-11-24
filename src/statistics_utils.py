@@ -6,17 +6,6 @@ def calculate_bmi(df):
     """
     return df["weight"] / (df["height"] / 100) ** 2
 
-def mean(series):
-    """
-    Beräknar medelvärdet för en pandas Series.
-    """
-    return series.mean()
-
-def std(series):
-    """
-    Beräknar standardavvikelse för en pandas Series.
-    """
-    return series.std()
 
 def mean_and_ci(series, confidence=0.95):
     """
@@ -34,9 +23,10 @@ def mean_and_ci(series, confidence=0.95):
 
     return mean, ci[0], ci[1]
 
+
 def calculate_med_min_max(df):
     """
-    Räknar och returnerar medel, median, min och max för datasetets numeriska värden.
+    Beräknar och returnerar medel, median, min och max för datasetets numeriska värden.
     """
     summary = df[[
         "age",
